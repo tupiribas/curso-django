@@ -3,4 +3,4 @@ from django.http import HttpResponse
 
 
 def home(request):
-    return render(request, 'recipes/home.html', context={'name': "Recipes"})
+    return render(request, 'recipes/pages/home.html', context={'name': "Recipes"})
