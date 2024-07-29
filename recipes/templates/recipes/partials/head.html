@@ -94,6 +94,7 @@
             font-family: var(--font-headings);
         }
 
+        /* Init - Header */
         .container {
             max-width: 144rem;
             margin: 0 auto;
@@ -120,7 +121,9 @@
             margin-right: 1.5rem;
         }
 
-        /* Inicio - Input de busca */
+        /* Close - Header */
+
+        /* Init - Search Input */
         .search-form {
             border: .2rem solid var(--color-gray-5);
             max-width: 64rem;
@@ -168,6 +171,22 @@
         .search-form:focus-within>.search-button {
             color: var(--color-primary-dark);
         }
-        /* Fim - Input de search */
+
+        /* Close - Search input */
+
+        .main-content {
+            padding-top: 0;
+        }
+
+        .main-content-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: var(--spacing-gutter-large);
+        }
+
+        .temp {
+            height: 40rem;
+            background: red;
+        }
     </style>
 </head>
