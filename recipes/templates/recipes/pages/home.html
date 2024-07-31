@@ -1,21 +1,15 @@
-{% include "recipes/partials/head.html" %}
+{% extends "global/base.html" %}
 
-<body>
-    {% comment %} Path: \templates\recipes\partials\header.html {% endcomment %}
-    {% comment %} Header in file {% endcomment %}
-    {% include "recipes/partials/header.html" %}
-    {% comment %} Path: \templates\recipes\partials\search.html {% endcomment %}
-    {% comment %} Search area {% endcomment %}
-    {% include "recipes/partials/search.html" %}
-    {% comment %} Principal area {% endcomment %}
-    <main class="main-content-container">
-        <div class="main-content main-content-list container">
-            {% include "recipes/partials/recipe.html" %}
-            {% include "recipes/partials/recipe.html" %}
-            {% include "recipes/partials/recipe.html" %}
-            {% include "recipes/partials/recipe.html" %}
-        </div>
-    </main>
-</body>
-{% comment %} Footer {% endcomment %}
-{% include "recipes/partials/footer.html" %}
+{% block title %}Home | Recipe{% endblock title %}
+
+{% block content %}
+<main class="main-content-container">
+    <div class="main-content main-content-list container">
+        {% include "recipes/partials/recipe.html" %}
+        {% include "recipes/partials/recipe.html" %}
+        {% include "recipes/partials/recipe.html" %}
+        {% include "recipes/partials/recipe.html" %}
+    </div>
+</main>
+
+{% endblock %}

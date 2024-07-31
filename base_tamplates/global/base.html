@@ -1,0 +1,35 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    {% include "recipes/partials/head.html" %}
+
+    {% comment %} Title app {% endcomment %}
+    <title>
+        {% block title %}{% endblock title %}
+    </title>
+</head>
+
+<body>
+    {% comment %} Header in file {% endcomment %}
+    {% include "recipes/partials/header.html" %}
+
+    {% comment %} Search area {% endcomment %}
+    {% include "recipes/partials/search.html" %}
+    
+    {% comment %} Principal area {% endcomment %}
+    <main class="main-content-container">
+        {% comment %} List in {% endcomment %}
+        <div class="main-content main-content-list container">
+        
+            {% block content %}{% endblock  %}
+        
+        </div>
+    </main>
+</body>
+
+{% comment %} Footer {% endcomment %}
+{% include "recipes/partials/footer.html" %}
+
+<html/>
