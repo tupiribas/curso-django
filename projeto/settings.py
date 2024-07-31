@@ -122,7 +122,8 @@ STATIC_URL = 'static/'
 # Just by my undestanding
 STATICFILES_DIRS = [
     BASE_DIR / 'base_static',
-]
+]# O static root, salvará os arquivo estaticos do meu projeto, com o comando:  py manage.py collectstatic
+STATIC_ROOT = BASE_DIR / 'static'
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
