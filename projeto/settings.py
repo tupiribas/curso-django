@@ -89,18 +89,11 @@ DATABASES = {
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
-]
+        'NAME':
+        'django.contrib.auth.password_validation.UserAttributeSimilarityValidator', },
+    {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator', },
+    {'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator', },
+    {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator', },]
 
 
 # Internationalization
@@ -120,10 +113,14 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 # Just by my undestanding
-STATICFILES_DIRS = [
-    BASE_DIR / 'base_static',
-]# O static root, salvará os arquivo estaticos do meu projeto, com o comando:  py manage.py collectstatic
+# O static root, salvará os arquivo estaticos do meu projeto, com o comando:  py manage.py collectstatic
+STATICFILES_DIRS = [BASE_DIR / 'base_static', ]
 STATIC_ROOT = BASE_DIR / 'static'
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
+
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
