@@ -1,6 +1,6 @@
-from django.shortcuts import render
-from utils.recipes.factory import make_recipe
-from recipes.models import Recipe, Category
+from django.shortcuts import get_list_or_404, render
+# from utils.recipes.factory import make_recipe # Dados de Teste
+from recipes.models import Recipe
 
 
 def home(request):
@@ -12,18 +12,23 @@ def home(request):
 
 
 def category(request, category_id):
-    recipes = Recipe.objects.filter(
-        category__id=category_id, is_published=True).order_by('-id')
+    recipes = get_list_or_404(
+        Recipe.objects.filter(
+            category__id=category_id,
+            is_published=True
+        ).order_by('-id'))
+
     return render(request, 'recipes/pages/home.html', context={
         'recipes': recipes,
-        'title_page': f'{recipes.first().category.name} - Category',
+        'title_page': f'{recipes[0].category.name} - Category',
     })
 
 
 def recipe(request, id):
-    recipe = Recipe.objects.filter(id=id)
+    recipe = Recipe.objects.filter(
+        pk=id, is_published=True).order_by('-id').first()
     return render(request, 'recipes/pages/recipe-view.html', context={
-        'recipes': recipe,
+        'recipe': recipe,
         'is_detail_page': True,
-        'title_page': 'Details',
+        'title_page': f'{recipe.title}',
     })

@@ -2,7 +2,7 @@
     {% comment %} Image {% endcomment %}
     {% if recipe.cover %}
         <div class="recipe-cover">
-            <a href="{% url "recipes:recipe" recipe.id %}">
+            <a href="{% url 'recipes:recipe' recipe.id %}">
                 <img src="{{ recipe.cover.url }}" alt="Temporário">
             </a>
         </div>
@@ -10,9 +10,9 @@
 
     {% comment %} Title Body {% endcomment %}
     <div class="recipe-title-container">
-        <a href="{% url "recipes:recipe" recipe.id %}">
+        <a href="{% url 'recipes:recipe' recipe.id %}">
             <h2 class="recipe-title">{{ recipe.title|title }}</h2>
-        <a href="{% url "recipes:recipe" recipe.id %}">
+        </a>
     </div>
 
     {% comment %} Informations author {% endcomment %}
@@ -44,7 +44,7 @@
             </a>
         {% endif %}
     </div>
-
+    
     <div class="recipe-content">
         <p>{{ recipe.description }}</p>
     </div>
@@ -74,7 +74,11 @@
         </footer>
     {% else %}
         <div class="preparation-steps">
-            {{ recipe.preparation_steps|linebreaksbr }}
+            {% if recipe.preparation_steps_is_html is True %}
+                {{ recipe.preparation_steps|safe }}
+            {% else %}
+                {{ recipe.preparation_steps|linebreaksbr }}
+            {% endif %}
         </div>
     {% endif %}
 </div>
