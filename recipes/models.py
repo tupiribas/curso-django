@@ -26,7 +26,8 @@ class Recipe(models.Model):
         upload_to='recipes/covers/%Y/%m/%d/', height_field=None,
         width_field=None, max_length=None, blank=True, default='')
     category = models.ForeignKey(
-        Category, on_delete=models.SET_NULL, null=True)
+        Category, on_delete=models.SET_NULL, null=True, blank=True,
+        default=None)
     author = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
 
     def __str__(self) -> str:
