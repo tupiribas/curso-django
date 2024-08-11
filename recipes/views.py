@@ -7,6 +7,7 @@ def home(request):
     recipes = Recipe.objects.filter(is_published=True).order_by('-id')
     return render(request, 'recipes/pages/home.html', context={
         'recipes': recipes,
+        'title_page': 'Home',
     })
 
 
@@ -14,6 +15,7 @@ def category(request, category_id):
     recipes = Recipe.objects.filter(category__id=category_id, is_published=True).order_by('-id')
     return render(request, 'recipes/pages/home.html', context={
         'recipes': recipes,
+        'title_page': 'Category',
     })
 
 
@@ -22,4 +24,5 @@ def recipe(request, id):
     return render(request, 'recipes/pages/recipe-view.html', context={
         'recipes': recipe,
         'is_detail_page': True,
+        'title_page': 'Details',
     })
