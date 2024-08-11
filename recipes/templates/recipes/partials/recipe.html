@@ -19,10 +19,15 @@
     <div class="recipe-author">
         <span class="recipe-author-item">
             <i class="fas fa-user"></i>
-            {% if recipe.author.first_name %}
-                {{ recipe.author.first_name }} {{ recipe.author.last_name }}
-            {% else %}
-                {{ recipe.author.username }}
+            {% if recipe.author is not None %}
+                {% if recipe.author.first_name %}
+                    {{ recipe.author.first_name }} {{ recipe.author.last_name }}
+                {% else %}
+                    @{{ recipe.author.username }}
+                {% endif %}
+                {% else %}
+                {% comment %} Caso o autor seja nulo {% endcomment %}
+                Desconhecido
             {% endif %}
         </span>
         <span class="recipe-author-item">
@@ -32,7 +37,7 @@
     </div>
     
     <div class="recipe-category">
-        {% if recipe.category.id %}
+        {% if recipe.category.id is not None%}
             <a class="recipe-category-item" href="{% url 'recipes:category' recipe.category.id %}">
                 <i class="fas fa-layer-group"></i>
                 <span>{{ recipe.category.name }}</span>
