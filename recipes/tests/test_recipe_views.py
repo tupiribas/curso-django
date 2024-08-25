@@ -53,9 +53,9 @@ class RecipeViewsTest(TestCase):
             is_published=True,
         )
         response = self.client.get(reverse('recipes:home'))
-        response_recipe = response.context['recipes']
+        response_context = response.context['recipes']
         
-        self.assertEqual(response_recipe.first().title, recipe.title)
+        self.assertEqual(response_context.first().title, recipe.title)
 
     def test_recipe_category_views_function_is_correct(self):
         view_category = resolve(
