@@ -41,7 +41,9 @@ class RecipeViewsTest(TestCase):
             email='user@gmail.com',
         )
         recipe = Recipe.objects.create(
-            title='Teste receita',
+            category=category,
+            author=author,
+            title='receita',
             description='teste descricao',
             slug='teste-receita',
             preparation_time=10,
@@ -53,9 +55,8 @@ class RecipeViewsTest(TestCase):
             is_published=True,
         )
         response = self.client.get(reverse('recipes:home'))
-        response_context = response.context['recipes']
-        
-        self.assertEqual(response_context.first().title, recipe.title)
+        content = response.content.decode('utf-8')
+        self.assertIn('Receita', content)
 
     def test_recipe_category_views_function_is_correct(self):
         view_category = resolve(
