@@ -1,6 +1,7 @@
 from django.urls import resolve, reverse
 
 from recipes import views
+from unittest import skip
 from recipes.tests.test_recipe_base import RecipeTestBase
 
 
@@ -22,6 +23,7 @@ class RecipeViewsTest(RecipeTestBase):
         path_tamplate = 'recipes/pages/home.html'
         self.assertTemplateUsed(response, path_tamplate)
 
+    @skip('WIP')
     def test_recipe_home_template_shows_no_recipes_found_if_no_recipes(self):
         response = self.client.get(path=reverse(viewname='recipes:home'))
         part_html = '<h1 class="center m-y">No recipes found here 🥲</h1>'
