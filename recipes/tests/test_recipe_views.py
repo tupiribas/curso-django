@@ -44,6 +44,21 @@ class RecipeViewsTest(RecipeTestBase):
         self.assertIn('Recipes', content)
         self.assertEqual(len(response_context_recipe), 1)
 
+    def test_recipe_home_template_dont_load_recipes_not_published(self):
+        """Test recipe is_pulished False and not show"""
+        part_html = '<h1 class="center m-y">No recipes found here 🥲</h1>'
+        # Need a recipe for this test
+        self.make_recipe(is_published=False)
+
+        response = self.client.get(reverse('recipes:home'))
+        content = response.content.decode('utf-8')
+
+        # Check if one recipe exist
+        self.assertIn('Recipes', content)
+        self.assertIn(
+            part_html, response.content.decode('utf-8')
+        )
+
     def test_recipe_category_views_function_is_correct(self):
         view_category = resolve(
             path=reverse(
