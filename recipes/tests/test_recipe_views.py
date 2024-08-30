@@ -55,9 +55,7 @@ class RecipeViewsTest(RecipeTestBase):
 
         # Check if one recipe exist
         self.assertIn('Recipes', content)
-        self.assertIn(
-            part_html, response.content.decode('utf-8')
-        )
+        self.assertIn(part_html, content)
 
     def test_recipe_category_views_function_is_correct(self):
         view_category = resolve(
@@ -73,6 +71,20 @@ class RecipeViewsTest(RecipeTestBase):
             viewname='recipes:category', kwargs={'category_id': 1000}
             )
         )
+        status_code = 404
+        self.assertEqual(response.status_code, status_code)
+
+    def test_recipe_category_template_dont_load_recipes_not_published(self):
+        """Test recipe is_pulished False and not show"""
+        # Need a recipe for this test
+        recipe = self.make_recipe(is_published=False)
+
+        response = self.client.get(path=reverse(
+            viewname='recipes:category',
+            kwargs={'category_id': recipe.category.id}
+            )
+        )
+
         status_code = 404
         self.assertEqual(response.status_code, status_code)
 
@@ -113,3 +125,17 @@ class RecipeViewsTest(RecipeTestBase):
 
         # Check if one recipe exist
         self.assertIn(needed_title, content)
+
+    def test_recipe_detail_template_dont_load_recipe_not_published(self):
+        """Test recipe is_pulished False and not show"""
+        # Need a recipe for this test
+        recipe = self.make_recipe(is_published=False)
+
+        response = self.client.get(path=reverse(
+            viewname='recipes:recipe',
+            kwargs={'id': recipe.id}
+            )
+        )
+
+        status_code = 404
+        self.assertEqual(response.status_code, status_code)
